@@ -40,6 +40,12 @@ my-project/
 - `routes/`
   > 用来存放系统中的路由信息,详细见[路由详解](#route)
 - `app.html`
+  > 所有页面的样板文件
+  >>   -  `%sveltekit.head%`
+  >>   -  `%sveltekit.body%`
+  >>   -  `%sveltekit.assets%`
+  >>   -  `%sveltekit.nonce%`
+  
 - `error.html`
 - `hooks.js`
 - `service-worker.js`
