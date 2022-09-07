@@ -32,11 +32,20 @@ my-project/
 
 >特别注意`hooks.js`文件 ,`routes目录`,`params目录`
 
-## 页面详解
+## 文件详解
+- `lib/`
+  >  包含自己写的库文件，而且可以在代码中使用 `$lib`作为引用使用
+- `params/`
+  >  用于存放一些路由参数的过滤规则
+- `routes/`
+  > 用来存放系统中的路由信息,详细见[路由详解](#route)
+- `app.html`
+- `error.html`
+- `hooks.js`
+- `service-worker.js`
 
 
-
-## 路由详解
+## <span id="route"> 路由详解 </span>
 
 ### 简单路由
 
