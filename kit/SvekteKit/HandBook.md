@@ -87,7 +87,8 @@ my-project/
   >  |LayoutLoad|+layout.js |
   >  |LayoutServerLoad|+layout.server.js |
   > 
-- 
+- 其他文件
+  >其他的文件会被SvelteKit忽略掉，不会参与到`route`的生成中，将这些文件放到他该有的地方去，例如`$lib`
 
 
 ### 高级路由
