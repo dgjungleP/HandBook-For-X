@@ -59,6 +59,36 @@ my-project/
 ## <span id="route"> 路由详解 </span>
 
 ### 简单路由
+	在使用路由的时候，我们使用的是svelte的基于文件系统的路由，路由存放的位置为`src/routes`,如果需要创建路由，则在当前文件夹下创建即可。（路由文件需要添加`+`前缀作为识别），下面是路由文件的介绍：
+#### Page相关
+- +page.svelte
+- +page.js
+- +page.server.js
+
+#### Error相关
+- +error.svelte
+#### Layout相关
+- +layout.svelte
+- +layout.js
+- +layout.server.js
+#### Server相关
+- +server.js
+#### 其他说明
+- $Types
+  >具体是可以从`$ypes.d.ts`中去获取到数据类型（这个文件在SvelteKit自动生成的隐藏文件）
+  >对以下两种情况会返回具体的data是什么类型的
+  >  -  `page.svelte` 中的 `export let data` 上使用注解 `@type import('./$types').PageData}`  
+  > - `layout.svelte` 的 `export let data` 上使用注解 `@type {import('./$types').LayoutData}`
+  > 也可以在对应的`load`函数使用具体的类型,如下表
+  >  | function |  file |
+  >  | :--- | :--- |
+  >  |PageLoad|+page.js |
+  >  |PageServerLoad|+page.server.js|
+  >  |LayoutLoad|+layout.js |
+  >  |LayoutServerLoad|+layout.server.js |
+  > 
+- 
+
 
 ### 高级路由
 
