@@ -79,7 +79,7 @@ my-project/
   >对以下两种情况会返回具体的data是什么类型的
   >  -  `page.svelte` 中的 `export let data` 上使用注解 `@type import('./$types').PageData}`  
   > - `layout.svelte` 的 `export let data` 上使用注解 `@type {import('./$types').LayoutData}`
-  > 也可以在对应的`load`函数使用具体的类型,如下表
+  > 也可以在对应的`load`函数使用具体的类型,如下表    
   >  | function |  file |
   >  | :--- | :--- |
   >  |PageLoad|+page.js |
