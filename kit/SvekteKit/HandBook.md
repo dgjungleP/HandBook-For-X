@@ -40,15 +40,20 @@ my-project/
 - `routes/`
   > 用来存放系统中的路由信息,详细见[路由详解](#route)
 - `app.html`
-  > 所有页面的样板文件
-  >>   -  `%sveltekit.head%`
-  >>   -  `%sveltekit.body%`
-  >>   -  `%sveltekit.assets%`
-  >>   -  `%sveltekit.nonce%`
+  > 所有页面的样板文件，并且包含一下几个特殊的占位符
+  >>   -  `%sveltekit.head%` : 用以替换页面中的<svelte:head>部分的内容
+  >>   -  `%sveltekit.body%` : 用以替换
+  >>   -  `%sveltekit.assets%` : 用以表示 paths.assets 或者 paths.base (暂时没遇到过，遇到了再看是什么情况)
+  >>   -  `%sveltekit.nonce%` : 用以[CSP](/appendix/CSP)使用(暂时没有用到，了解一下什么是CSP)
   
-- `error.html`
-- `hooks.js`
-- `service-worker.js`
+ - `error.html` （非必要）
+   > 用以页面发生任何错误的时候的跳转，包含以下占位符
+   > >  - `%sveltekit.status%` : http请求的状态麻
+   > >  - `%sveltekit.message%` :错误信息
+- `hooks.js` （非必要）
+>  用于管理系统的[hooks](./hoocks)
+- `service-worker.js` （非必要）
+  > 用以管理系统的[service worker](./serviceWorker)
 
 
 ## <span id="route"> 路由详解 </span>

@@ -1,0 +1,1 @@
+在`svelte.config.js`文件中定义，详细内容见[configuration](https://kit.svelte.dev/docs/configuration)
