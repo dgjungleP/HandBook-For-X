@@ -66,22 +66,32 @@ my-project/
 #### Page 相关
 
 - +page.svelte
+  > 就是当前路由的页面，如果当前路由中有`+layout.svelte`的话，就会插入导layout中的`sot`中
 - +page.js
+>   主要是和`+page.svelte`合作，通过`load`方法返回数据和进行一些处理，同事还有一些页面的设置`orerender`,`ssr`,`csr`等
 - +page.server.js
+>   如果你的`load`函数只能在服务端使用，比如你有一些私有化的环境变量或者参数之类的，那么你就可以使用这个文件。
+>   并且相比于`+page.js`他还能使用[actions](./actions),可以让你用`<form>`的形式向服务器提交数据
 
 #### Error 相关
 
 - +error.svelte
+> 如果在执行`load`函数的时候发生了任何问题，除了使用公共的错误页面以外，你可以针对于每个`route`自定义自己的错误页面
 
 #### Layout 相关
 
 - +layout.svelte
+  > 可以用来创建页面固定的模板，而且支持嵌套
 - +layout.js
+  > 类比于 `+page.js`，可以为`+layout.svelte`提供数据
 - +layout.server.js
+>   类比于`+page.server.js`
 
 #### Server 相关
 
 - +server.js
+  > 定义api的路由 或者说是端点信息 可以导出一些方法例如,`GET`, `POST`, `PATCH`, `PUT` 和 `DELETE`,并且会有一个入参`RequestEvnet`,和一个返回值`Response` ,
+  > 同时在方法内部,你也可以用来自于`@sveltejs/kit`的`error`, `redirect` 和 `json`
 
 #### 其他说明
 
