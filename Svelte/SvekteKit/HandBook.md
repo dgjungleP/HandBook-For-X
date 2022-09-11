@@ -53,9 +53,9 @@ my-project/
   > > - `%sveltekit.status%` : http 请求的状态麻
   > > - `%sveltekit.message%` :错误信息
 - `hooks.js` （非必要）
-  > 用于管理系统的[hooks](./hoocks)
+  > 用于管理系统的[hooks](Hoocks.md)
 - `service-worker.js` （非必要）
-  > 用以管理系统的[service worker](./serviceWorker)
+  > 用以管理系统的[service worker](ServiceWorker.md)
 
 ## <span id="route"> 路由详解 </span>
 
@@ -71,7 +71,7 @@ my-project/
 >   主要是和`+page.svelte`合作，通过`load`方法返回数据和进行一些处理，同事还有一些页面的设置`orerender`,`ssr`,`csr`等
 - +page.server.js
 >   如果你的`load`函数只能在服务端使用，比如你有一些私有化的环境变量或者参数之类的，那么你就可以使用这个文件。
->   并且相比于`+page.js`他还能使用[actions](./actions),可以让你用`<form>`的形式向服务器提交数据
+>   并且相比于`+page.js`他还能使用[actions](actions.md),可以让你用`<form>`的形式向服务器提交数据
 
 #### Error 相关
 
