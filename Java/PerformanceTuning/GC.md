@@ -44,7 +44,7 @@
 - 如果CPU有限，使用`Concurrent收集器`额外的CPU消耗会让批量任务消耗更多的时间
 
 ### GC算法
-- [Serial垃圾收集器](./GCAlogrithm/Serial.md)
+- Serial垃圾收集器
 > 指令 ， -XX:+UseSerialGC 
 > - `单线程`清理
 > - 执行任何GC都会`STW`
@@ -54,7 +54,7 @@
 > - `多线程`回收新生代们可以`多线程`回收老年代
 > - 执行任何GC都会`STW`
 > - 进行`Full GC`时，还会对老年代空间的对象进行`压缩`
-- CMS收集器
+- [CMS收集器](./GCAlogrithm/CMS.md)
 > 指令，-XX:+UseParNewGC  -XX:+UseConcMarkSweepGC
 > - 多线程清理
 > - 在执行Minor GC才会`STW`,对于Full GC使用后台线程定期对老年代进行扫描和回收
@@ -137,3 +137,9 @@
 > - 工具[GC Histogram](./Tool/GCHistogram.md)可以解析GC日志形成图表
 > - `jconsole`可以查看分区的使用情况
 > - `jstat` 可以使用 `-gcutil` 查看gc的情况
+### 其他指令
+>  -XX:MaxGCPauseMilis=N -XX:GCTimeRatio=N
+
+### 总结
+- 合理的设置性能目标，是调优的第一步
+- 动态调正是进行堆调优的较好的入手点
