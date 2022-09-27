@@ -37,14 +37,19 @@
 > - 永久代/元空间用尽，需要回收（默认情况下CMS不会触发回收）
 
 解决办法
-- 增大老年代空间，要么只移动部分新生代对象到老年代，要么增加更多的对空间
+- 增大老年代空间，要么只移动部分新生代对象到老年代，要么增加更多的堆空间
 - 以更高的频率运行后台回收程序，给后台线程更过的运行机会
 	 - 更早地启动并发收集周期
 	  > 指令，-XX:CMSInitiatingOccupancyFraction=N  -XX:+UseCMSInitiatingOccupancyOnly
 	  - CMS后台线程会持续运行，会消耗大量地CPU时钟，100%地CPU资源，机器必须预留出足够地CPU周期来运行CMS线程
 	  - CMS在特定地阶段会STW,所以频繁地无效CMS周期会起到反作用
 - 使用更多的后台回收线程
->
+>指令，-XX:ConcGCThreads=N
+#### 永久代调优
+> 指令，-XX:CMSPermGenSweepingEnabled -XX:CMSInitiatingPermOccupancyFraction=N -XX:+CMSClassUnloadingEnabled
+> 频繁部署应用或频繁定义（或回收）类地应用中，容易产生永久代垃圾回收
+#### 增量式CMS垃圾收集
+> 指令， -XX:CmsIncrementalMode -XX:CMSIncrementalSafetyFactor=N -XX:CMSIncrementalDutyCycleMin=N -XX:CMSIncrementalPacing
 
 	
 

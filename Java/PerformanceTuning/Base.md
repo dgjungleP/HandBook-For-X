@@ -2,12 +2,24 @@
 1. 编辑器和垃圾收集器等的调优参数
 2. Java平台（类比API）的最佳实践
 
+## 优化方向
+- 即时编译
+- 垃圾回收
+
+## 最佳实践方向
+- Java内存的使用
+- 原生内存的使用
+- 线程性能
+- Java服务技术
+- 数据库访问
+- 通用的Java SE API使用技巧
+
 ## 约定
 ### JVM调优标志
 - 布尔标记：-XX:+FlagName 开启 -XX:-FlagName 关闭
 - 附带参数标记：-XX:FlagName=something
 > 添加标记-XX:+PrintFlagsFinal 可以打印出当前JVM的标记
-> -XX:+PrintCommandLineFlags 答应被修改过的标记
+> -XX:+PrintCommandLineFlags 打印被修改过的标记
 
 ### 性能优化需要注意的点
 - 编写更好的算法
@@ -19,6 +31,13 @@
 - CPU使用率
 - I/O延迟
 - 系统整体的吞吐量
+
+## 硬件平台的变化
+- 多核硬件
+	- 超线程技术
+- 软件容器
+	- 虚拟机
+	- Docker容器
 
 ## 性能分析的方法
 - 借助性能分析来优化代码，重点关注性能分析中最耗时的操作
