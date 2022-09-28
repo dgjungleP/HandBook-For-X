@@ -3,10 +3,14 @@
 ## 概述
 ### 垃圾收集的步骤
 1. 查找不再使用的对象
-2. 释放对这些对象所管理的内存
-3. 对堆的内存布局进行压缩整理
+> 可达性分析，从`GC Root`对象开始搜索，可达就是活跃，不可达就是无效对象
+3. 释放对这些对象所管理的内存
+4. 对堆的内存布局进行压缩整理
 > - 简单的清理不足以合理的时候内存，有时候我们还需要进行内存整理，防止内存碎片
 > - `STW`对性能的影响最大，尽量减少这种停顿是最关键的考虑因素
+### 垃圾回收器运行时的线程
+- `mutator线程`，执行引用程序的逻辑
+- GC线程
 
 ### 类型
 - Serial收集器（单CPU环境）
@@ -70,10 +74,13 @@
 #### 备注
 > - 可以通过`Systen.gc()`手动触发GC
 > - 通过指令，-XX:+DisableExplicitGC 禁止手动GC
+> - 通过jcmd GC.run 可以触发gc
+> - 远程方法调用（RMI）,也可以触发gc
 
 ### 如何选择GC算法
 > - 应用程序的特征
 > - 应用的性能目标
+> - 可用的硬件
 
 #### GC与批量任务
 >- 主要考虑收集器引入的停顿的影响
@@ -99,15 +106,17 @@
 - 代空间的调整
 > 指令，-XX:NewRatio=N -XX:NewSize=N -XX:MaxNewSize=N -XmnN
 > 新生代过大，发生垃圾回收的频率会降低，但是Full GC会更加频繁
+> JVM会`自适应变`化代空间大小
 - 永久代和元空间的调整
 > 指令，-XX:PermSize=N -XX:MaxPermSize=N  -XX:MetaspaceSize=N -XX:MaxMetaspaceSize=N 
 > 保存的数据只对编译器或者JVM的运行时有用
 > 与程序的类的数量成正比
-> 频繁`重新载入类`的环境，容易造成永久代/元空间耗尽，触发Full GC
+> 频繁`重新载入类`的环境(类加载器泄露)，容易造成永久代/元空间耗尽，触发Full GC
 - 控制并发
 > 指令，-XX:ParallelGCThreads=N
 > - 几乎所有的垃圾收集算法中的基本垃圾回收线程数都依据机器上的CPU数目计算得出
 > - 多个JVM运行再同一台物理机上是，需特别注意线程数的优化
+> - 如果Docker容器有限制，那么就需要线程数的优化
 - 自适应调整
 > 指令，-XX:+UseAdaptiveSizePolicy -XX:+PrintAdaptiveSizePolicy
 > JVM再运行的过程中也会不断地尝试和寻找优化性能地机会
@@ -137,6 +146,7 @@
 > - 工具[GC Histogram](./Tool/GCHistogram.md)可以解析GC日志形成图表
 > - `jconsole`可以查看分区的使用情况
 > - `jstat` 可以使用 `-gcutil` 查看gc的情况
+- 原生内存跟踪工具（NMT）
 ### 其他指令
 >  -XX:MaxGCPauseMilis=N -XX:GCTimeRatio=N
 
