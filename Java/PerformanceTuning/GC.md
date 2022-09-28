@@ -53,12 +53,12 @@
 > - `单线程`清理
 > - 执行任何GC都会`STW`
 > - 进行`Full GC`时，还会对老年代空间的对象进行`压缩`
-- [Throughput垃圾收集器](Java/PerformanceTuning/GCAlgorithm/Throughput.md)
+- [Throughput垃圾收集器](./GCAlgorithm/Throughput.md)
 > 指令，-XX:+UseParallelOldGC -XX:+UseParallelGC
 > - `多线程`回收新生代们可以`多线程`回收老年代
 > - 执行任何GC都会`STW`
 > - 进行`Full GC`时，还会对老年代空间的对象进行`压缩`
-- [CMS收集器](Java/PerformanceTuning/GCAlgorithm/CMS.md)
+- [CMS收集器](./GCAlgorithm/CMS.md)
 > 指令，-XX:+UseParNewGC  -XX:+UseConcMarkSweepGC
 > - 多线程清理
 > - 在执行Minor GC才会`STW`,对于Full GC使用后台线程定期对老年代进行扫描和回收
