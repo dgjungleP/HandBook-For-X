@@ -153,3 +153,79 @@
 ### 总结
 - 堆的动态优化是调整堆大小的第一步
 - 动态优化后，以动态优化结果开始静态优化是一个不错的选择
+
+## 高级优化
+
+### 晋升和Survivor空间
+- 指令，-XX:InitialSurvivorRatio=N
+- 指令，-XX:MinSurvivorTatio=N
+- 指令，-XX:TargetSurvivorRatio=N
+- 指令，-XX:InitailTenuringThresdhold=N
+- 指令，-XX:MaxTenuringThreshold=N
+- 指令，-XX:+AlwaysTenure
+- 指令，-XX:+NeverTenure
+> 什么情况下优化什么值，我们需要参考一下晋升统计
+> - 指令，-XX:+PrintTenuringDistribution
+
+### 分配大对象
+> `大`是相对于JVM中特定的缓冲区(`线程本地分配缓冲区` TLAB)的大小
+
+##### 线程本地分配缓存
+> - 指令，-XX:+UseTLAB -XX:+PrintTLAB -XX:TLABSize=N -XX:+ResizeTLAB
+> - 每一个线程都有一个本地分配缓存区
+> - 在专用的分配区域中，线程在分配对象的时候就不需要进行任何同步（是一种`防止锁竞争`的变体），否则在`共享空间`中分配的话，就需要利用`同步机制`来管理当前空间中的`空闲指针`
+> - 本地分配内存很好，不能分配大对象
+> - `TLAB`满了之后，JVM所需要做出的抉择
+> 	- 清退当前`TLAB`，并重新给相关的线程分配一个新的
+> 	- 直接在堆上分配对象
+> - `TLAB`大小决定的因素：
+> 	- 应用程序中线程数量
+> 	- Eden空间的大小
+> 	- 线程的分配速率
+> - 能从调优中获取收益的程序类型
+> 	- 分配很多大对象的应用程序
+> 	- 于Eden空间相比，线程数量相对较多的程序
+
+##### 修改线程本地分配缓存的大小
+> - 指令, -XX:TLABSize=N -XX:+ResizeTLAB -XX:TLABWasteTargetPercent=N -XX:TLABWasteIncrement=N -XX:MinTLABSize=N
+
+##### 巨型对象
+> - 针对于短期巨型对象造成的负面影响，除了改变程序，使其不需要短期的巨型对象以外， 没有其他办法优化
+> - 在G1 GC中需要特殊的优化来补偿损失
+> 	- 在G1 GC中定义巨型对象为大于等于区域一般大小的对象
+> 	- 在并发周期的清理阶段就会被释放
+
+##### G1 GC的区域大小
+> - 指令，-XX:G1HeapRegionSize=N
+> - 是固定值
+> - 由启动时堆大小的最小值确定
+> - 调优场景
+> 	- 处理巨型对象
+> 	- 区域过多（最好让区域的数量接近2048）
+
+##### AggressiveHeap标志
+> 不建议使用，甚至会导致性能下降
+> - 包含以下几个方面
+> 	- 晋升本地分配缓冲区 (`PLAB`)的大小
+> 	- 编译策略
+> 	- 在`Full GC`之前禁用`Young GC`
+> 	- 将GC线程绑定在CPU
+
+##### 全面控制堆的大小 
+> - 指令，-XX:MaxRAM=N  -XX:MaxRAMFraction=N -XX:ErgoHeapSizeLimit=N -XX:MinRAMFraction=N
+
+### 新型的GC目标
+- 并发的压缩（[ZGC](./GCAlgorithm/ZGC.md)，[Shenandoah](./GCAlgorithm/Shenandoah.md)）
+- 无回收（[Epsilon GC](./GCAlgorithm/EpsilonGC.md)）
+
+## 选择什么样的方式优化垃圾回收器
+- 你的应用程序能容忍Full GC的停顿吗
+- 在默认设置下，你是否已经获得了所需的性能
+- 停顿时间是否在某种程度上界定你的预期
+- 尽管GC停顿时间很短，但吞吐量仍然上不去
+- 是否在使用并发回收器
+	- 遇到了`并发模式失败`而导致的Full GC
+	- 遇到了`晋升失败`而导致的Full GC
+
+
+## [Next 堆内存最佳实践](./Heap.md)
