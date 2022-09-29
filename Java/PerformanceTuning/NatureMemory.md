@@ -1,0 +1,11 @@
+## 测量内存
+### 工具
+- Linux
+	- top
+	- ps
+- windows
+	- perfmon
+	- VMMap
+### 类型
+- 分配的内存
+- 保留的内存
