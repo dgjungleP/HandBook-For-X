@@ -12,3 +12,9 @@
 # GC日志解析工具
 - jClarity
 - [GCeasy](https://gceasy.io/)
+
+# Java代码性能分析器
+- Oracle Studio Profiler
+
+# 伪缓存诊断工具
+- Intel  VTune Amplifier
