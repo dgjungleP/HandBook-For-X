@@ -19,4 +19,4 @@ HTTPS
 - HTTPS先经过SSL/TLS再进入TCP传输层
 - 一般端口号为443
 
-![[HTTP_extend.png]]
+![HTTP_extend.png](../img/HTTP_extend.png)
