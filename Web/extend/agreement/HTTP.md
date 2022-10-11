@@ -1,5 +1,5 @@
 ## HTTP请求/响应模型
-![HTTP_requet_resonse.png](../img/HTTP_requet_resonse.png)
+![HTTP_requet_resonse.png](HTTP_requet_resonse.png)
 
 1. 客户端和服务器先通过`3次握手`建立连接
 2. 建立连接后，客户端发送一个请求到服务器（组装报文）
