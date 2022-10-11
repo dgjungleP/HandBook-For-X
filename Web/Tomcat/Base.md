@@ -15,8 +15,11 @@ HTTP
 
 HTTPS
 - 本质上也是`HTTP协议`
-- 在`HTTP`的基础上增加了一个`SSL`或`TLS`协议层
+- 在`HTTP`的基础上增加了一个[SSL/TLS](../extend/SSL-TLS.md)协议层
 - HTTPS先经过SSL/TLS再进入TCP传输层
 - 一般端口号为443
 
 ![HTTP_extend.png](../img/HTTP_extend.png)
+
+## 套接字通信
+
