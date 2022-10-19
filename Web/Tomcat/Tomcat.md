@@ -17,7 +17,7 @@
 > - 可以包含多个`Connetor组件`和一个处理请求的`Engine组件`
 > - 包含一个`Executor组件`,即一个`线程池`，为Service内所有的组件提供线程池执行任务
 
-#### Connector组件
+#### [Connector](./assembly/Connector.md)组件
 > - 主要职责就是接收客户端连接并接收消息报文
 > - 报文消息经过器解析后，传入容器组处理
 
@@ -40,7 +40,7 @@
 > - `Mapper组件`，路由导航，寻找合适的`Servlet`
 > - `CoyoteAdaptor组件`，Connetor和Container的适配器
 
-#### Engine组件
+#### [Engine](./assembly/Engine.md)组件
 > - 代表全局的Servlet引擎
 > - 每个`Service组件`只能包含一个
 > - 可以包含若干个`Host容器`
@@ -52,7 +52,7 @@
 - Pipline，对请求进行处理的通道
 - Realm，`Engine容器`级别的用户-密码-权限的数据对象，配合资源认证模块使用
 
-#### Host组件
+#### [Host](./assembly/Host.md)组件
 > - 代表虚拟主机
 > - 可以放多个`Context容器`
 
