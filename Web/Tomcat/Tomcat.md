@@ -64,7 +64,7 @@
 - Realm，`Host容器`级别的用户-密码-权限的数据对象，配合资源认证模块使用
 
 
-#### Context组件
+#### [Context](./assembly/Context.md)组件
 > - 代表Web应用
 > - 包含了各种静态资源，各种动态资源
 > - 可以包含多个`Wrapper容器`
@@ -79,7 +79,7 @@
 - NamingResource，将Tomcat的`server.xml`和Web应用的`context.xml`资源和属性映射到内存中
 - Mapper，当前Context容器的路由导航
 
-#### Wrapper组件
+#### [Wrapper](./assembly/Wrapper.md)组件
 > - 代表的是Servlet
 > - 于Servlet一对一
 
@@ -88,3 +88,6 @@
 - ServletPool，Servlet实现了`SingleThreadModel`时才会产生的Servlet对象池
 - Pipeline，请求处理通道
 
+
+
+## Next [生命周期管理](./LifeCycle.md)
