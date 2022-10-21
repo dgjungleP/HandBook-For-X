@@ -52,7 +52,7 @@
 ### NamingResource
 >  将配置中声明的不同的资源以及属性映射到内存中，与NamingContextListener协作完成这个功能
 
-### Mapper
+### [Mapper](./Mapper.md)
 > Context级别的路由导航，与RequestDispatcher协作，分发请求到对应的Servlet
 
 ## Pipeline
