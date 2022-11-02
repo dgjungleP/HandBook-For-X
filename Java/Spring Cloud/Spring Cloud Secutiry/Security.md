@@ -53,3 +53,11 @@
 3. UserDetailsService
 4. UserDetails
 5. PasswordEncoder
+
+
+
+## JWT集成网关验证
+
+#### 适用范围
+1. SSO
+2. 用户身份认证
