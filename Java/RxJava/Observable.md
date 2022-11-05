@@ -61,6 +61,26 @@
 > 将有限事件流，转化成另一个流
 
 - distinct/distinctUntilChanged
+> 去重，只获得唯一的事件
+
+
+- compose
+> 将已有的操作组合在一起
+
+
+- lift
+> 可以实现任意的操作符，利用`Subscriber` 
+
+
+## 使用方式
+
+1. 将普通的集合转换到Observable
+2. 在组合阻塞代码和非阻塞代码的时候，使用BlockingQbservable
+3. 使用defer拥抱`延迟执行`
+4. 更好的语义化异常
+5. 合理的转化和快速的使用转化为并发模式
+6. 定期轮询轮询以获取变更
+7. 使用调度器来实现并发，于subscribeOn和observeOn结合使用
 
 ## 说明
 1. 工厂方法默认是在客户端线程中执行
