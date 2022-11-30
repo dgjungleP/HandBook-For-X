@@ -23,10 +23,20 @@
 
 
 ## 丰富的扩展组件及生态
+> 通过对JDK标准的SPI扩展点发现机制加强而来
+
 > - Filter
 > - Router
 > - Protocol
 > - Transaction
 > - Tracing
+
+### 特性
+- 按需加载
+- 增加扩展类的IOC能力
+- 增加扩展类的AOP能力
+- 具备动态选择扩展实现的能力
+- 可以对扩展实现进行排序
+- 提供扩展点的Adaptive能力
 
 
